@@ -1,6 +1,6 @@
 {
     "name": "@fgo-planner/common-utils",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "repository": {
         "type": "git",
         "url": "https://github.com/fgo-planner/npm-lib-common.git"
@@ -14,14 +14,16 @@
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"
     },
+    "exports": {
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "require": "./lib/cjs/index.js",
+            "import": "./lib/esm/index.js"
+        }
+    },
+    "types": "lib/types/index.d.ts",
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
-    "types": "lib/types/index.d.ts",
-    "exports": {
-        "types": "./lib/types/index.d.ts",
-        "require": "./lib/cjs/index.js",
-        "import": "./lib/esm/index.js"
-    },
     "sideEffects": false,
     "scripts": {
         "lint": "eslint \"**/*.{js,ts}\"",
@@ -32,7 +34,10 @@
         "build": "npm-run-all -l lint -p clean -p build:esm build:cjs declarations",
         "prepublishOnly": "npm i && npm run build"
     },
-    "dependencies": {},
+    "dependencies": {
+        "@fgo-planner/common-types": "0.0.1",
+        "date-fns": "^2.29.2"
+    },
     "devDependencies": {
         "@babel/cli": "^7.18.10",
         "@babel/core": "^7.18.13",
