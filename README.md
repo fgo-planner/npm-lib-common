@@ -1,5 +1,7 @@
 # npm-lib-common
 
+Contains common code that is used across multiple services and clients.
+
 ## Requirements
 
 ### Target JS Versions
