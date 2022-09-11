@@ -15,3 +15,4 @@ export * from './generics/readonly-record.type';
 export * from './generics/tuple.type';
 export * from './generics/type.type';
 export * from './generics/writable.type';
+export * from './readonly/readonly-date.type';

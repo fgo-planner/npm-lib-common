@@ -1,6 +1,6 @@
 {
     "name": "@fgo-planner/common-core",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "repository": {
         "type": "git",
         "url": "https://github.com/fgo-planner/npm-lib-common.git"
@@ -46,7 +46,7 @@
         }
     },
     "dependencies": {
-        "@fgo-planner/common-types": "^0.0.1",
+        "@fgo-planner/common-types": "^0.0.2",
         "csv-parse": "^5.3.0",
         "date-fns": "^2.29.2"
     },

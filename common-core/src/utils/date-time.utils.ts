@@ -1,8 +1,14 @@
-import { Immutable } from '@fgo-planner/common-types';
+import { Immutable, ReadonlyDate } from '@fgo-planner/common-types';
 import { millisecondsInSecond, secondsInMinute } from 'date-fns';
 
-export function cloneDate(date: Date | Immutable<Date> | undefined): Date | undefined {
+type DateParam = Date | ReadonlyDate | Readonly<Date> | Immutable<Date>;
+
+export function cloneDate(date: DateParam | undefined): Date | undefined {
     return date ? new Date(date as Date) : undefined;
+}
+
+export function getTime(date: DateParam | undefined): number | undefined {
+    return date ? (date as Date).getTime() : undefined;
 }
 
 /**
@@ -10,8 +16,8 @@ export function cloneDate(date: Date | Immutable<Date> | undefined): Date | unde
  * words, this sets the date's hours, minutes, seconds, and milliseconds all to
  * zero. A new `Date` instance is always returned.
  */
-export function truncateToDate(date: Date | number): Date {
-    const result = new Date(date);
+export function truncateToDate(date: DateParam | number): Date {
+    const result = new Date(date as Date | number);
     // TODO Maybe use a library for this.
     result.setHours(0);
     result.setMinutes(0);
@@ -20,19 +26,19 @@ export function truncateToDate(date: Date | number): Date {
     return result;
 }
 
-export function utcToZonedTime(date: Date | number): Date {
+export function utcToZonedTime(date: DateParam | number): Date {
     if (typeof date === 'number') {
         date = new Date(date);
     }
-    const milliseconds = date.getTime() + date.getTimezoneOffset() * secondsInMinute * millisecondsInSecond;
+    const milliseconds = (date as Date).getTime() + (date as Date).getTimezoneOffset() * secondsInMinute * millisecondsInSecond;
     return new Date(milliseconds);
 }
 
-export function zonedToUtcTime(date: Date | number): Date {
+export function zonedToUtcTime(date: DateParam | number): Date {
     if (typeof date === 'number') {
         date = new Date(date);
     }
-    const milliseconds = date.getTime() - date.getTimezoneOffset() * secondsInMinute * millisecondsInSecond;
+    const milliseconds = (date as Date).getTime() - (date as Date).getTimezoneOffset() * secondsInMinute * millisecondsInSecond;
     return new Date(milliseconds);
 }
 
