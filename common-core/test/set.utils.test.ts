@@ -1,4 +1,4 @@
-import * as SetUtils from '../src/set.utils';
+import { SetUtils } from '../src/utils';
 
 describe('SetUtils.isEqual', () => {
 

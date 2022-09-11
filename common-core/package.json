@@ -1,6 +1,6 @@
 {
-    "name": "@fgo-planner/common-utils",
-    "version": "0.0.3",
+    "name": "@fgo-planner/common-core",
+    "version": "0.0.1",
     "repository": {
         "type": "git",
         "url": "https://github.com/fgo-planner/npm-lib-common.git"
@@ -10,16 +10,14 @@
     "bugs": {
         "url": "https://github.com/fgo-planner/npm-lib-common/issues"
     },
-    "homepage": "https://github.com/fgo-planner/npm-lib-common/tree/master/common-utils#readme",
+    "homepage": "https://github.com/fgo-planner/npm-lib-common/tree/master/common-core#readme",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"
     },
     "exports": {
-        ".": {
-            "types": "./lib/types/index.d.ts",
-            "require": "./lib/cjs/index.js",
-            "import": "./lib/esm/index.js"
-        }
+        "types": "./lib/types/index.d.ts",
+        "require": "./lib/cjs/index.js",
+        "import": "./lib/esm/index.js"
     },
     "types": "lib/types/index.d.ts",
     "main": "lib/cjs/index.js",
@@ -48,7 +46,7 @@
         }
     },
     "dependencies": {
-        "@fgo-planner/common-types": "0.0.1",
+        "@fgo-planner/common-types": "^0.0.1",
         "csv-parse": "^5.3.0",
         "date-fns": "^2.29.2"
     },

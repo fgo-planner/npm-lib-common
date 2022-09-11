@@ -1,4 +1,4 @@
-import * as CsvUtils from '../src/csv.utils';
+import { CsvUtils } from '../src/utils';
 
 describe('CsvUtils.parse', () => {
 

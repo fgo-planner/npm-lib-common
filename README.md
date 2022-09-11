@@ -4,9 +4,8 @@ Contains generic common code that is used across multiple services and clients.
 
 ## Requirements
 
-### Target JS Versions
-* common-types: ES6
-* common-utils: ES6
+### Node Versions
+All packages in this repo require Node 16.10 or higher when importing as CommonJS modules.
 
 ### Installing/Publishing Packages
 Each module in this repository should come with a `.npmrc.example` file at the root level. If you need to install and/or publish `@fgo-planner` packages for the module, make a copy of the file in the same directory and rename it to `.npmrc`. Then, go into file and replace `TOKEN` with your personal access token in the following line:
