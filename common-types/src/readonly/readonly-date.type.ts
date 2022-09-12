@@ -17,7 +17,6 @@ export type ReadonlyDate = Pick<Date,
     'getUTCMinutes' |
     'getUTCMonth' |
     'getUTCSeconds' |
-    'getVarDate' |
     'toDateString' |
     'toISOString' |
     'toJSON' |

@@ -1,6 +1,6 @@
 {
     "name": "@fgo-planner/common-types",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "repository": {
         "type": "git",
         "url": "https://github.com/fgo-planner/npm-lib-common.git"
