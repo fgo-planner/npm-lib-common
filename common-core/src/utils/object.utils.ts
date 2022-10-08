@@ -16,14 +16,24 @@ export function getOrDefault<K extends string | number | symbol, V>(obj: Record<
 
 export function isShallowEquals(a: ReadonlyRecord<string, any>, b: ReadonlyRecord<string, any>): boolean {
     for (const key of Object.keys(a)) {
-        if (!(key in b) || a[key] !== b[key]) {
+        if (!(key in b) || !_isValuesEqual(a[key], b[key])) {
             return false;
         }
     }
     for (const key of Object.keys(b)) {
-        if (!(key in a) || a[key] !== b[key]) {
+        if (!(key in a) || !_isValuesEqual(a[key], b[key])) {
             return false;
         }
     }
     return true;
+}
+
+function _isValuesEqual(a: any, b: any): boolean {
+    if (a instanceof Date) {
+        a = a.getTime();
+    }
+    if (b instanceof Date) {
+        b = b.getTime();
+    }
+    return a === b;
 }
