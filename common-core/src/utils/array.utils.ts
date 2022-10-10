@@ -1,3 +1,19 @@
+const EmptyArray = [] as ReadonlyArray<any>;
+
+/**
+ * @returns An immutable empty array.
+ */
+export function emptyArray<T>(): ReadonlyArray<T> {
+    return EmptyArray;
+}
+
+/**
+ * @returns A mutable empty array.
+ */
+export function instantiate<T>(): Array<T> {
+    return [];
+}
+
 export function mapArrayToObject<T, K extends string | number | symbol>(
     arr: ReadonlyArray<T>,
     keyFunc: (elem: T) => K

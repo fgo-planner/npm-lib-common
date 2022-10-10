@@ -1,5 +1,27 @@
 import { SetUtils } from '../../src/utils';
 
+describe('SetUtils.emptySet', () => {
+
+    it('should return an empty set', () => {
+        const result = SetUtils.emptySet();
+
+        expect(result).toBeDefined();
+        expect(result.size).toStrictEqual(0);
+    });
+
+});
+
+describe('SetUtils.instantiate', () => {
+
+    it('should return an empty set', () => {
+        const result = SetUtils.instantiate();
+
+        expect(result).toBeDefined();
+        expect(result.size).toStrictEqual(0);
+    });
+
+});
+
 describe('SetUtils.isEqual', () => {
 
     it('should return true for the same set', () => {
