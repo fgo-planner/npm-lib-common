@@ -1,4 +1,3 @@
-
 /**
  * Returns the given value as-is.
  */
