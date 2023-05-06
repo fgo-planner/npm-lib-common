@@ -1,3 +1,5 @@
+import { ReadonlyRecord } from '@fgo-planner/common-types';
+
 const EmptyMap = new Map<any, any>() as ReadonlyMap<any, any>;
 
 //#region Arrays
@@ -81,6 +83,11 @@ export function newSet<T>(): Set<T> {
     return new Set();
 }
 
+/**
+ * Checks of two sets are equal. Sets are considered to be equal if the contain
+ * exactly the same elements. Elements are compared using the `Set.has` method
+ * regardless of their type.
+ */
 export function isSetsEqual<T>(a: ReadonlySet<T>, b: ReadonlySet<T>): boolean {
     if (a === b) {
         return true;
@@ -94,6 +101,24 @@ export function isSetsEqual<T>(a: ReadonlySet<T>, b: ReadonlySet<T>): boolean {
         }
     }
     return true;
+}
+
+/**
+ * Removes all the elements in set `a` that are in set `b`.
+ *
+ * @return `true` if the set was modified as a result of the operation, `false`
+ * otherwise.
+ */
+export function removeAll<T>(a: Set<T>, b: ReadonlySet<T>): boolean {
+    let changed = false;
+    for (const elem of b) {
+        if (!a.has(elem)) {
+            continue;
+        }
+        a.delete(elem);
+        changed = true;
+    }
+    return changed;
 }
 
 //#endregion
@@ -163,18 +188,18 @@ export function mapIterableToObject<T, K extends string | number | symbol, V>(
     return result;
 }
 
-export function mapIterableToMap<T, K extends string | number | symbol>(
+export function mapIterableToMap<T, K>(
     iterable: Iterable<T>,
     keyFunc: (elem: T) => K
 ): Map<K, T>;
 
-export function mapIterableToMap<T, K extends string | number | symbol, V>(
+export function mapIterableToMap<T, K, V>(
     iterable: Iterable<T>,
     keyFunc: (elem: T) => K,
     valueFunc: (elem: T) => V
 ): Map<K, V>;
 
-export function mapIterableToMap<T, K extends string | number | symbol, V>(
+export function mapIterableToMap<T, K, V>(
     iterable: Iterable<T>,
     keyFunc: (elem: T) => K,
     valueFunc?: (elem: T) => V
@@ -189,6 +214,26 @@ export function mapIterableToMap<T, K extends string | number | symbol, V>(
         }
     }
     return result;
+}
+
+export function objectToMap<K extends string | number | symbol, V>(
+    record: ReadonlyRecord<K, V>
+): Map<K, V>;
+
+export function objectToMap<K1 extends string | number | symbol, K2, V>(
+    record: ReadonlyRecord<K1, V>,
+    keyMapFunc: (key: K1) => K2
+): Map<K2, V>;
+
+export function objectToMap<K1 extends string | number | symbol, K2, V>(
+    record: ReadonlyRecord<K1, V>,
+    keyMapFunc?: (key: K1) => K2
+): Map<K1, V> | Map<K2, V> {
+    const entries = Object.entries(record) as unknown as Array<[K1, V]>;
+    if (!keyMapFunc) {
+        return new Map(entries);
+    }
+    return mapIterableToMap(entries, ([key]) => keyMapFunc(key), ([,value]) => value);
 }
 
 /**

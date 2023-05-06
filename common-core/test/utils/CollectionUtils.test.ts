@@ -80,6 +80,87 @@ describe('CollectionUtils.isSetsEqual', () => {
 
 });
 
+describe('CollectionUtils.removeAll', () => {
+
+    it('should not modify set `a` and return false if set `b` is empty', () => {
+        const a = new Set([1, 2, 3]);
+        const b = new Set();
+
+        const result = CollectionUtils.removeAll(a, b);
+        expect(result).toStrictEqual(false);
+        expect(a.size).toStrictEqual(3);
+        expect(a.has(1)).toStrictEqual(true);
+        expect(a.has(2)).toStrictEqual(true);
+        expect(a.has(3)).toStrictEqual(true);
+    });
+
+    it('should not modify set `a` and return false if set `b` does not have any common values', () => {
+        const a = new Set([1, 2, 3]);
+        const b = new Set([4, 5, 6]);
+
+        const result = CollectionUtils.removeAll(a, b);
+        expect(result).toStrictEqual(false);
+        expect(a.size).toStrictEqual(3);
+        expect(a.has(1)).toStrictEqual(true);
+        expect(a.has(2)).toStrictEqual(true);
+        expect(a.has(3)).toStrictEqual(true);
+    });
+
+    it('should modify set `a` and return true if set `b` has common values', () => {
+        const a = new Set([1, 2, 3]);
+        const b = new Set([2, 3, 4]);
+
+        const result = CollectionUtils.removeAll(a, b);
+        expect(result).toStrictEqual(true);
+        expect(a.size).toStrictEqual(1);
+        expect(a.has(1)).toStrictEqual(true);
+    });
+
+});
+
+describe('CollectionUtils.objectToMap', () => {
+
+    it('should return empty map if given empty object', () => {
+        const object = {};
+        const result = CollectionUtils.objectToMap(object);
+
+        expect(result).toBeDefined();
+        expect(result.size).toBe(0);
+    });
+
+    it('should return equivalent map if given a non-empty object', () => {
+        const object: Record<string | number, any> = {
+            a: 1,
+            b: '2',
+            3: []
+        };
+        const result = CollectionUtils.objectToMap(object);
+
+        expect(result).toBeDefined();
+        expect(result.size).toBe(3);
+        expect(result.get('a')).toStrictEqual(1);
+        expect(result.get('b')).toStrictEqual('2');
+        expect(Array.isArray(result.get('3'))).toStrictEqual(true);
+    });
+
+    it('should return equivalent map with numeric keys if given a non-empty object with Number mapping function', () => {
+        const object: Record<string | number, any> = {
+            1: 'a',
+            2: 'b',
+            3: []
+        };
+        const result = CollectionUtils.objectToMap(object, Number);
+
+        expect(result).toBeDefined();
+        expect(result.size).toBe(3);
+        expect(result.get(1)).toStrictEqual('a');
+        expect(result.get(2)).toStrictEqual('b');
+        expect(Array.isArray(result.get(3))).toStrictEqual(true);
+    });
+
+
+});
+
 describe('CollectionUtils.toReadonlyArray', () => {
 
     it('should return the same array instance for an array input', () => {
