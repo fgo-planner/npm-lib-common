@@ -1,4 +1,4 @@
-import { ReadonlyPartial } from './readonly-partial.type';
+import { ReadonlyPartial } from './ReadonlyPartial.type';
 
 /**
  * @deprecated Use `ImmutableArray<Partial<T>>` instead.

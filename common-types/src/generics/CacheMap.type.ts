@@ -1,4 +1,4 @@
-import { ReadonlyRecord } from './readonly-record.type';
+import { ReadonlyRecord } from './ReadonlyRecord.type';
 
 /**
  * @deprecated Use `ImmutableRecord<K, V>` instead.

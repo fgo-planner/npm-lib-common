@@ -1,4 +1,4 @@
-import { Immutable } from './immutable.type';
+import { Immutable } from './Immutable.type';
 
 /**
  * Readonly array of `Immutable` typed objects.

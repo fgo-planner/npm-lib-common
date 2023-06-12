@@ -1,5 +1,5 @@
-import { Immutable } from './immutable.type';
-import { ReadonlyRecord } from './readonly-record.type';
+import { Immutable } from './Immutable.type';
+import { ReadonlyRecord } from './ReadonlyRecord.type';
 
 /**
  * Readonly record of `Immutable` typed objects.
