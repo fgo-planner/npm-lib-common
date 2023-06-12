@@ -7,7 +7,14 @@ export function cloneDate(date: DateParam | undefined): Date | undefined {
     return date ? new Date(date as Date) : undefined;
 }
 
-export function getTime(date: DateParam | undefined): number | undefined {
+export function getTime(date: DateParam | string | undefined): number | undefined {
+    if (!date) {
+        return undefined;
+    }
+    if (typeof date === 'string') {
+        const time = new Date(date).getTime();
+        return isNaN(time) ? undefined : time;
+    }
     return date ? (date as Date).getTime() : undefined;
 }
 
